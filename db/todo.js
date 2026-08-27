@@ -20,9 +20,14 @@ function updateToDo(id, todo) {
     .update(todo);
 };
 
+function deleteToDo(id) {
+    return knex("todo").where("ID", id).del();
+};
+
 module.exports = {
     getAllToDo,
     getToDo,
     createToDo,
     updateToDo,
+    deleteToDo,
 };
