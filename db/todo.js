@@ -14,8 +14,15 @@ function createToDo(todo) {
     return knex("todo").insert(todo);
 };
 
+function updateToDo(id, todo) {
+    return knex("todo")
+    .where("ID", id)
+    .update(todo);
+};
+
 module.exports = {
     getAllToDo,
     getToDo,
     createToDo,
+    updateToDo,
 };
