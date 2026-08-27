@@ -7,9 +7,9 @@ const db = require("./db/todo");
 app.use(bodyParser.urlencoded({ extend: false }));
 app.use(bodyParser.json());
 
-app.get("/test", (req, res) => {
-    res.status(200).json({success: true});
-});
+// app.get("/test", (req, res) => {
+//     res.status(200).json({success: true});
+// });
 
 app.get("/ToDoItems", async (req, res) => {
     const todo = await db.getAllToDo();
