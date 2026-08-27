@@ -10,7 +10,12 @@ function getToDo(id) {
     .first();
 };
 
+function createToDo(todo) {
+    return knex("todo").insert(todo);
+};
+
 module.exports = {
     getAllToDo,
-    getToDo
+    getToDo,
+    createToDo,
 };

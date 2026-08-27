@@ -21,4 +21,9 @@ app.get("/ToDoItems/:id", async (req, res) => {
     res.status(200).json({id});
 });
 
+app.post("/ToDoItems", async (req, res) => {
+    await db.createToDo(req.body);
+    res.status(200).json({success: true});
+});
+
 app.listen(1337, () => console.log("server is running on port 1337"));
