@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const db = require("./db/todo");
+const cors = require("cors");
 
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extend: false }));
 app.use(bodyParser.json());
 
@@ -17,8 +18,12 @@ app.get("/ToDoItems", async (req, res) => {
 });
 
 app.get("/ToDoItems/:id", async (req, res) => {
-    const id = await db.getToDo(req.params.id);
-    res.status(200).json({id});
+    const item = await db.getToDo(req.params.id);
+    if (item === undefined) {
+        return res.status(404).json({"error": "Item not found"});
+    } else {
+        return res.status(200).json({item});
+    }
 });
 
 app.post("/ToDoItems", async (req, res) => {
